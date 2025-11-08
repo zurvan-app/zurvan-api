@@ -12,7 +12,7 @@ Built with **Golang**, it provides a modular architecture supporting:
 
 | Layer | Technology |
 |-------|-------------|
-| Language | Go (v1.22+) |
+| Language | Go (v1.25+) |
 | Framework | Fiber / Echo |
 | Database | PostgreSQL |
 | Cache | Redis |
