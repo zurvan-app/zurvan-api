@@ -2,6 +2,22 @@
 
 package model
 
+import (
+	"time"
+)
+
+type AuthResponse struct {
+	User         *User  `json:"user"`
+	AccessToken  string `json:"accessToken"`
+	RefreshToken string `json:"refreshToken"`
+	ExpiresIn    int    `json:"expiresIn"`
+}
+
+type LoginInput struct {
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
 type Mutation struct {
 }
 
@@ -13,6 +29,20 @@ type NewTodo struct {
 type Query struct {
 }
 
+type RefreshTokenInput struct {
+	RefreshToken string `json:"refreshToken"`
+}
+
+type RegisterInput struct {
+	Name     string `json:"name"`
+	Email    string `json:"email"`
+	Password string `json:"password"`
+}
+
+type ResendVerificationInput struct {
+	Placeholder *string `json:"placeholder,omitempty"`
+}
+
 type Todo struct {
 	ID   string `json:"id"`
 	Text string `json:"text"`
@@ -21,6 +51,15 @@ type Todo struct {
 }
 
 type User struct {
-	ID   string `json:"id"`
-	Name string `json:"name"`
+	ID          string     `json:"id"`
+	Name        string     `json:"name"`
+	Email       string     `json:"email"`
+	IsVerified  bool       `json:"isVerified"`
+	CreatedAt   time.Time  `json:"createdAt"`
+	UpdatedAt   time.Time  `json:"updatedAt"`
+	LastLoginAt *time.Time `json:"lastLoginAt,omitempty"`
+}
+
+type VerifyEmailInput struct {
+	Code string `json:"code"`
 }

@@ -1,0 +1,69 @@
+# Git
+.git/
+.gitignore
+
+# Documentation
+README.md
+*.md
+
+# Environment files
+.env
+.env.*
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+zurvan-api
+setup
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test artifacts
+*.test
+*.out
+coverage.txt
+
+# Dependencies
+vendor/
+
+# Go workspace file
+go.work
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+# Docker files (exclude from build context)
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# Backup files
+backups/
+*.sql.gz
+
+# SSL certificates
+certbot/
+nginx/ssl/
+
+# Monitoring configs (exclude from app build)
+monitoring/
+nginx/
+
+# Development database data
+postgres_data/
+redis_data/

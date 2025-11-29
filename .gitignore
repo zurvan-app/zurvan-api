@@ -1,4 +1,45 @@
 ### VS Code ###
 .vscode/
 
+# Environment files
 .env
+.env.local
+
+# Build artifacts
+zurvan-api
+setup
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool
+*.out
+
+# IDE files
+.idea/
+*.swp
+*.swo
+
+# Dependencies
+vendor/
+
+# Go workspace file
+go.work
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Log files
+*.log
+
+# Temporary files
+tmp/
+temp/
+
+server

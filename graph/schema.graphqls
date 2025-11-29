@@ -1,7 +1,71 @@
-# GraphQL schema example
-#
-# https://gqlgen.com/getting-started/
+# Authentication Schema for Zurvan API
 
+scalar Time
+
+type User {
+  id: ID!
+  name: String!
+  email: String!
+  isVerified: Boolean!
+  createdAt: Time!
+  updatedAt: Time!
+  lastLoginAt: Time
+}
+
+type AuthResponse {
+  user: User!
+  accessToken: String!
+  refreshToken: String!
+  expiresIn: Int!
+}
+
+input RegisterInput {
+  name: String!
+  email: String!
+  password: String!
+}
+
+input LoginInput {
+  email: String!
+  password: String!
+}
+
+input VerifyEmailInput {
+  code: String!
+}
+
+input ResendVerificationInput {
+  placeholder: String
+}
+
+input RefreshTokenInput {
+  refreshToken: String!
+}
+
+type Query {
+  # Get current authenticated user
+  me: User
+
+}
+
+type Mutation {
+  # Register a new user
+  register(input: RegisterInput!): AuthResponse!
+  
+  # Login user
+  login(input: LoginInput!): AuthResponse!
+  
+  # Verify email with verification code
+  verifyEmail(input: VerifyEmailInput!): String!
+  
+  # Resend email verification code
+  resendVerificationCode(input: ResendVerificationInput!): String!
+  
+  # Refresh access token
+  refreshToken(input: RefreshTokenInput!): AuthResponse!
+}
+
+# Legacy types (can be removed later)
 type Todo {
   id: ID!
   text: String!
@@ -9,20 +73,7 @@ type Todo {
   user: User!
 }
 
-type User {
-  id: ID!
-  name: String!
-}
-
-type Query {
-  todos: [Todo!]!
-}
-
 input NewTodo {
   text: String!
   userId: String!
-}
-
-type Mutation {
-  createTodo(input: NewTodo!): Todo!
 }
