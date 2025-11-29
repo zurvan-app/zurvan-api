@@ -5,6 +5,7 @@ import (
 	"crypto/rand"
 	"errors"
 	"fmt"
+	"log"
 	"math/big"
 	"time"
 
@@ -129,7 +130,7 @@ func (uc *AuthUseCase) Login(ctx context.Context, input *models.LoginInput) (*mo
 	// Update last login
 	if err := uc.userRepo.UpdateLastLoginAt(ctx, user.ID); err != nil {
 		// Log error but don't fail login
-		fmt.Printf("failed to update last login: %v\n", err)
+		log.Printf("failed to update last login: %v", err)
 	}
 
 	// Generate tokens
@@ -306,7 +307,7 @@ func (uc *AuthUseCase) generateAndSaveVerificationCode(ctx context.Context, user
 
 	// TODO: Send email with verification code
 	// For now, we'll just log it (in production, integrate with email service)
-	fmt.Printf("Verification code for %s: %s\n", email, code)
+	log.Printf("Verification code for %s: %s", email, code)
 
 	return nil
 }
